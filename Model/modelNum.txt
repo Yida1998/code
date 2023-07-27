@@ -1,0 +1,5 @@
+0:自己实现的resnet18
+1：alexnet
+2：官方的resnet18
+3：ResnetSe18
+10:测试模型
