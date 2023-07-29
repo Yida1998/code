@@ -1,179 +1,482 @@
-# 后台运行命令 nohup bash -u run.sh > ./Log/0421.log 2>&1 &
-
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_bins4' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_bins8' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_bins16' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_008' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0413/KFold/TrainSet2_016' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
+#!/bin/bash
+module load anaconda/2020.11
+source activate torch17
+export PYTHONUNBUFFERED=1
+# python trainBatchNew.py --KFold=3  --root_path='./DataSet/dataset/CrossVal/dataset_1' --test_path='./DataSet/TrainSet1_224_112' --epoches=10 --train_times=3 --batchSize=512 --num_workers=2 --leastEpoch=0
 
 
-#python train.py  --train_path='./DataSet/0413/TrainSet2_bins4' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/0413/TrainSet2_bins8' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/0413/TrainSet2_bins16' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/0413/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/0413/TrainSet2_008' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/0413/TrainSet2_016' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=2 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
+# 实验二
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_0.5' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/val'
 
-# 0421训练算法1构成不同子图大小的实验, 运行3次 重新允许代码 重复1次就好 先把全部代码跑一遍
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_600_300' --test_path='./DataSet/0421/val/TrainSet1_600_300' --epoches=120 --train_times=1 --batchSize=64 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_448_224' --test_path='./DataSet/0421/val/TrainSet1_448_224' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_336_168' --test_path='./DataSet/0421/val/TrainSet1_336_168' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_224_112' --test_path='./DataSet/0421/val/TrainSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_168_84' --test_path='./DataSet/0421/val/TrainSet1_168_84' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_112_64' --test_path='./DataSet/0421/val/TrainSet1_112_64' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0421/train/TrainSet1_64_32' --test_path='./DataSet/0421/val/TrainSet1_64_32' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_600' --test_path='./DataSet/0421/val/TrainSet1_600_300' --epoches=120 --train_times=1 --batchSize=64 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_448' --test_path='./DataSet/0421/val/TrainSet1_448_224' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_336' --test_path='./DataSet/0421/val/TrainSet1_336_168' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_224' --test_path='./DataSet/0421/val/TrainSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_168' --test_path='./DataSet/0421/val/TrainSet1_168_84' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_112' --test_path='./DataSet/0421/val/TrainSet1_112_64' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0422/train/TrainSet2_64' --test_path='./DataSet/0421/val/TrainSet1_64_32' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
+#python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.0' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/val'
+
+#python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.5' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/val'
+
+#python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.0' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/val'
+
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.5' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/val'
 
 
-
-# 0428三组随机实验  原始数据一次 2 4 8 16 32区间舍弃各一次
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_random1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_random2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_random3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_224' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_002' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_008' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_016' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0428/train/TrainSet2_032' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-
-
-# 0430 使用原图来进行实验, 分别使用数据增强及不同尺寸大小
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=32 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=224
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=32 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=224 --enhance
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=16 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=448
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=16 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=448 --enhance
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=8 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=600
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0429/train' --test_path='./DataSet/0429/test' --epoches=120 --train_times=1 --batchSize=8 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=600 --enhance
+# 实验一
+# python train.py --train_path='./DataSet/论文/实验一/train' --test_path='./DataSet/论文/实验一/test' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/val'  --raw_image --raw_size=1200
+# 
+# python train.py --train_path='./DataSet/论文/实验一/train' --test_path='./DataSet/论文/实验一/test' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/val'  --raw_image --raw_size=600
+# 
+# python train.py --train_path='./DataSet/论文/实验一/train' --test_path='./DataSet/论文/实验一/test' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/val'  --raw_image --raw_size=448
+# 
+# python train.py --train_path='./DataSet/论文/实验一/train' --test_path='./DataSet/论文/实验一/test' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/val'  --raw_image --raw_size=224
+# 
+# python train.py --train_path='./DataSet/论文/实验一/train' --test_path='./DataSet/论文/实验一/test' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/val'  --raw_image --raw_size=112
 
 
-# 0502 right left 2 4 8 16 32
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_l002' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_l004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_l008' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_l016' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_l032' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_r002' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_r004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_r008' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_r016' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0502/train/TrainSet2_r032' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-
-# 0505 every model to train on five dataset
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='shufflenetv2'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='mobilenetv3'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-
-
-# 0507 break
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-#
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='efficientnetb0'
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=128 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit'
-
-#  0508 vit
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand1' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand2' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainRand3' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0505/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=1 --batchSize=50 --num_workers=4 --n_class=3 --leastEpoch=0 --model_name='vit' --learning_rate=0.001
-
-# 0519 原图 224_224训练  224_224测试
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0518/original/train' --test_path='./DataSet/0518/original/test' --epoches=120 --train_times=1 --batchSize=4 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=1200
-#python trainBatch.py --KFold=5 --root_path='./DataSet/0518/original/train' --test_path='./DataSet/0518/original/test' --epoches=120 --train_times=1 --batchSize=8 --num_workers=4 --n_class=3 --leastEpoch=0 --raw_image --raw_size=600
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet1_224_112' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet1_224_224' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet2_224_224' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet2_224_112' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-# 0521 because of 0519's break
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet1_224_224' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python trainBatch.py --KFold=5 --root_path='./DataSet/train/TrainSet2_004' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-
-# 0522 repeat best result model
-#python train.py  --train_path='./DataSet/single/TrainSet1_224_112' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/single/TrainSet1_224_112' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#python train.py  --train_path='./DataSet/single/TrainSet2_224_112' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/single/TrainSet2_224_112' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#
-#python train.py  --train_path='./DataSet/single/TrainSet2_004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-#python train.py  --train_path='./DataSet/single/TrainSet2_004' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-
-# 0523 left right 004
-python train.py  --train_path='./DataSet/single/TrainSet2_r004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-python train.py  --train_path='./DataSet/single/TrainSet2_r004' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-
-python train.py  --train_path='./DataSet/single/TrainSet2_l004' --test_path='./DataSet/TestSet1_224_112' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
-python train.py  --train_path='./DataSet/single/TrainSet2_l004' --test_path='./DataSet/TestSet1_224_224' --epoches=120 --train_times=3 --batchSize=256 --num_workers=4 --n_class=3 --leastEpoch=0
+# 实验三  batch：300 300 800 1200 1600 2400 4800	batch：全部batch保持相同
+# python train.py --train_path='./DataSet/论文/实验三/train/600/train' --test_path='./DataSet/论文/实验三/test/600' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/64/train' --test_path='./DataSet/论文/实验三/test/64' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/64/val'
 
 
 
+# 重做实验一
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_600' --test_path='./DataSet/论文/实验一/实验一New/test/D_600' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_600' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_64' --test_path='./DataSet/论文/实验一/实验一New/test/D_64' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_64' --testWith_raw
 
 
+# 实验四  test1
+# python train.py --train_path='./DataSet/论文/实验四/TrainRandom/train/TrainSet2_600_dropm0.0_adaption_ramdom_1.0/train' --test_path='./DataSet/论文/实验四/TrainRandom/test/TrainSet2_600_dropm0.0_adaption_ramdom_1.0' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainRandom/train/TrainSet2_600_dropm0.0_adaption_ramdom_1.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainRandom/train/TrainSet2_600_dropm0.0_adaption_ramdom_1.0/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainMake/train/TrainSet2_600_dropm0.0_adaption_1.0_broke/train' --test_path='./DataSet/论文/实验四/TrainMake/test/TrainSet2_600_dropm0.0_adaption_1.0_broke' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainMake/train/TrainSet2_600_dropm0.0_adaption_1.0_broke/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainMake/train/TrainSet2_600_dropm0.0_adaption_1.0_broke/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+
+# 实验四，测试模型是否可正常运行
+
+# 实验四，数据集1 TrainSet
+# python train.py --train_path='./DataSet/论文/实验四/TrainSet/train/600/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=80 --num_workers=4 --model_name='resnet' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainSet/train/600/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=80 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainSet/train/600/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=80 --num_workers=4 --model_name='mobilenetv3' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainSet/train/600/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=80 --num_workers=4 --model_name='efficientnetb0' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/TrainSet/train/600/train' --test_path='./DataSet/论文/实验四/TrainSet/test/600' --epoches=120 --batchSize=80 --num_workers=4 --model_name='vit' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/TrainSet/train/600/val' --enhance
+
+
+# 0907探究模型的batch
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=1 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=1 --batchSize=1200 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=1 --batchSize=700 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+
+# python train.py --train_path='./DataSet/论文/实验三/train/600/train' --test_path='./DataSet/论文/实验三/test/600' --epoches=1 --batchSize=150 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/600/val'
+
+#python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=1 --batchSize=150 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+#python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=1 --batchSize=300 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=1 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=1 --batchSize=900 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=1 --batchSize=1200 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验三/train/64/train' --test_path='./DataSet/论文/实验三/test/64' --epoches=1 --batchSize=1500 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/64/val'
+
+# 0908重做实验一
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=40 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+
+
+# 重做实验二
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_0.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/val'
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_0.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/val'
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_0.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_0.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_1.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_1.5/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.0' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.0/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/train' --test_path='./DataSet/论文/实验二/test/TrainSet2_224_dropm0.0_adaption_2.5' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验二/train/TrainSet2_224_dropm0.0_adaption_2.5/val'
+
+# 0908 19:52 重做实验一 验证集比例设为与训练集相近似
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_560' --test_path='./DataSet/论文/实验一/实验一35val/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_448' --test_path='./DataSet/论文/实验一/实验一35val/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_336' --test_path='./DataSet/论文/实验一/实验一35val/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_224' --test_path='./DataSet/论文/实验一/实验一35val/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_168' --test_path='./DataSet/论文/实验一/实验一35val/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_112' --test_path='./DataSet/论文/实验一/实验一35val/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_56' --test_path='./DataSet/论文/实验一/实验一35val/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_56' --testWith_raw
+
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_560' --test_path='./DataSet/论文/实验一/实验一35val/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_448' --test_path='./DataSet/论文/实验一/实验一35val/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_336' --test_path='./DataSet/论文/实验一/实验一35val/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_224' --test_path='./DataSet/论文/实验一/实验一35val/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_168' --test_path='./DataSet/论文/实验一/实验一35val/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_112' --test_path='./DataSet/论文/实验一/实验一35val/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_56' --test_path='./DataSet/论文/实验一/实验一35val/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_56' --testWith_raw
+
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_560' --test_path='./DataSet/论文/实验一/实验一35val/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_560' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_448' --test_path='./DataSet/论文/实验一/实验一35val/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_448' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_336' --test_path='./DataSet/论文/实验一/实验一35val/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_336' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_224' --test_path='./DataSet/论文/实验一/实验一35val/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_224' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_168' --test_path='./DataSet/论文/实验一/实验一35val/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_168' --testWith_raw
+ 
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_112' --test_path='./DataSet/论文/实验一/实验一35val/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_112' --testWith_raw
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一35val/train/D_56' --test_path='./DataSet/论文/实验一/实验一35val/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一35val/val/D_56' --testWith_raw
+
+
+# 0909 重做实验3
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=100 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=900 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=1500 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=100 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=900 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=1500 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=100 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=300 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=900 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=1200 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=1500 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+
+#0909 3:04重做实验一 batch60 和batch20
+
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=60 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+# 
+# 
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+# 
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_560' --test_path='./DataSet/论文/实验一/实验一New/test/D_560' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_560' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_448' --test_path='./DataSet/论文/实验一/实验一New/test/D_448' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_448' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_336' --test_path='./DataSet/论文/实验一/实验一New/test/D_336' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_336' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_224' --test_path='./DataSet/论文/实验一/实验一New/test/D_224' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_224' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_168' --test_path='./DataSet/论文/实验一/实验一New/test/D_168' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_168' --testWith_raw
+#  
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_112' --test_path='./DataSet/论文/实验一/实验一New/test/D_112' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_112' --testWith_raw
+# 
+# python train.py --train_path='./DataSet/论文/实验一/实验一New/train/D_56' --test_path='./DataSet/论文/实验一/实验一New/test/D_56' --epoches=120 --batchSize=20 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验一/实验一New/val/D_56' --testWith_raw
+
+
+# 0909  实验三：20-34测试一下batch， 最佳的batch没有找到啊！！！！！！！！ -> 已完成
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=10 --batchSize=1060 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+
+# 0910 1-05 实验三 重新提交，待完成，已重新调整batch
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=96 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=266 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=1066 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=2400 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=9600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=96 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=266 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=1066 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=2400 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=9600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+
+# python train.py --train_path='./DataSet/论文/实验三/train/560/train' --test_path='./DataSet/论文/实验三/test/560' --epoches=120 --batchSize=96 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/560/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/448/train' --test_path='./DataSet/论文/实验三/test/448' --epoches=120 --batchSize=150 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/448/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/336/train' --test_path='./DataSet/论文/实验三/test/336' --epoches=120 --batchSize=266 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/336/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/224/train' --test_path='./DataSet/论文/实验三/test/224' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/224/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/168/train' --test_path='./DataSet/论文/实验三/test/168' --epoches=120 --batchSize=1066 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/168/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/112/train' --test_path='./DataSet/论文/实验三/test/112' --epoches=120 --batchSize=2400 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/112/val'
+
+# python train.py --train_path='./DataSet/论文/实验三/train/56/train' --test_path='./DataSet/论文/实验三/test/56' --epoches=120 --batchSize=9600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验三/train/56/val'
+
+
+# 0910 1-06 提交实验四
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+# python train.py --train_path='./DataSet/论文/实验四/train/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+
+
+# 0918重做实验四
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet18' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet34' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.05' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.1' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.2' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
+# 
+# python train.py --train_path='./DataSet/论文/实验四/train/0918re/Made_0.3' --test_path='./DataSet/论文/实验四/test' --epoches=120 --batchSize=600 --num_workers=4 --model_name='resnet50' --learning_rate=0.0001 --lr_scheduler='None' --n_class=11 --val_path='./DataSet/论文/实验四/val'
